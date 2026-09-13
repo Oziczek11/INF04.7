@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funkcje </title>
+</head>
+<body>
+
+    
+
+
+
+<script>
+    function add(a,b){
+        let wynik = a+b
+        console.log(wynik)
+        return(add);
+    }
+    add(10,20)
+    function greet(name, surname){
+        const nazwisko = `Twoje imie to ${name}, a nazwisko ${surname}`;
+        console.log(nazwisko);
+        return nazwisko;
+    }
+    greet("Jan","Kowalski");
+    function concat(text1, text2){
+        let polonczenie = text1 + text2;
+        console.log(polonczenie);
+        return(polonczenie);
+    }
+    concat("jeden","dwa");
+    function absoluteValue(x){
+        let Wartos_bewzgledna = Math.abs(x);
+        console.log(Wartos_bewzgledna);
+        return(Wartos_bewzgledna);
+    }
+    absoluteValue(-5);
+    function showFutureAge(name1, currentAge, years=10){
+        let wynik_docelowy = currentAge + years;
+        const napis = `${name1} za ${years} lat bedzie miał ${wynik_docelowy}`;
+        console.log(napis);
+        return(napis);
+    }
+    showFutureAge("Andrzej", 23,)
+    function rectangleArea(length, width){
+        let pole = length * width;
+        console.log(pole);
+        return(pole);
+    }
+    rectangleArea(100,100);
+    function power(a, b){
+        let wynik = Math.pow(a, b);
+        console.log(wynik);
+        return(wynik);
+    }
+    power(2,3);
+    function squareRoot(x){
+        let wynik = Math.sqrt(x);
+        console.log(wynik);
+        return(wynik);
+    }
+    squareRoot(4);
+    function roundNumber(x){
+        let zaogronglenie1 = Math.round(x);
+        let zaogronglenie2 = Math.floor(x);
+        let zaogronglenie3 = Math.ceil(x);
+        console.log(zaogronglenie1,zaogronglenie2,zaogronglenie3);
+        return(zaogronglenie1,zaogronglenie2,zaogronglenie3);
+    }
+    roundNumber(4.7);
+    function random1to10(){
+        let min = 1;
+        let max = 10;
+        let random = Math.floor(Math.random() * (max - min + 1)) + min;
+        console.log(random);
+        return(random);
+    }
+    random1to10();
+    function maxOfTwo(a, b){
+        if (a>b){
+            console.log(a);
+        }
+        else{
+            console.log(b);
+        }
+    }
+    maxOfTwo(1,5);
+    function minOfTwo(a, b){
+               if (a<b){
+            console.log(a);
+        }
+        else{
+            console.log(b);
+        }
+    }
+    minOfTwo(1,5); 
+    function circleArea(r){
+        let pole = Math.PI * Math.pow(r,2);
+        console.log(pole);
+        return(pole);
+    }
+    circleArea(4);
+    function isAdult(age){
+        let prawda = true;
+        let falsz = false;
+        if(age >= 18){
+            console.log(prawda);
+        }
+        else{
+            console.log(falsz);
+        }
+    }
+    isAdult(4);
+    function isEmptyString(text){
+        let prawda = true;
+        let falsz = false;
+        if(text === ""){
+            console.log(prawda);
+        }
+        else{
+            console.log(falsz);
+        }
+    }
+    isEmptyString("");
+    function convertToNumber(value){
+        return Number(value)
+    }
+        console.log(convertToNumber("123"));   
+        console.log(convertToNumber("123abc")); 
+        console.log(convertToNumber(true));    
+        console.log(convertToNumber(false));
+    function getCurrentYear(){
+        let data = Date();
+        console.log(data);
+        return(data);
+    }
+    getCurrentYear();
+    function getCurrentMonth(){
+        let data = new Date();
+        return data.getMonth() +1;
+    }
+    console.log(getCurrentMonth());
+
+    function getCurrentDayOfWeek(){
+        let data = new Date();
+        return data.getDay();
+    }
+    console.log(getCurrentDayOfWeek());
+    function formatDate(){
+        let now = new Date();
+        let day = String(now.getDate()).padStart(2, '0');
+        let month = String(getCurrentMonth()).padStart(2, '0');
+        let year = String(now.getFullYear());
+        return `${day}-${month}-${year}`;
+    }
+    console.log(formatDate());
+    function daysBetween(date1,date2){
+        let d1 = new Date(date1);
+        let d2 = new Date(date2);
+        let czasMI = Math.abs(d2.getTime()- d1.getTime());
+        let czasDay = czasMI / (1000 * 60 * 60 *24);
+        return Math.round(czasDay);
+    }
+    console.log(daysBetween('2026-09-01','1955-05-14'));
+</script>
+</body>
+</html>
