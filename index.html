@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadania JavaScript</title>
+<style>
+    .pudelko {
+        width: 100px;
+        height: 100px;
+        background-color: #e0e0e0;
+    }
+
+    .aktywny {
+        background-color: #ff6b6b;
+    }
+
+    body {
+        height: 20000px;
+    }
+
+    input {
+        padding: 8px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        outline: none;
+    }
+
+    .focused {
+        border-color: #4ecdc4;
+        background-color: #f7ffff;
+    }
+
+    textarea {
+        width: 300px;
+        height: 100px;
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .warn {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<h2>Zadanie 1: Przełączanie klasy</h2>
+<div id="mojePudelko" class="pudelko"></div>
+<br>
+<button id="przyciskKlasy">Przełącz klasę</button>
+<br><br>
+<hr>
+<div>
+    <h2>Zadanie 2 i 3: Licznik wartości</h2>
+    <div>
+        Aktualna wartość:
+        <span id="licznikSpan">0</span>
+    </div>
+    <br>
+
+    <div>
+        <button id="przyciskMinus">−</button>
+        <button id="przyciskReset">Reset</button>
+        <button id="przyciskPlus">+</button>
+    </div>
+</div>
+<br>
+<label for="poleTekstowe">
+    Wpisz coś:
+</label>
+<br>
+<input
+    type="text"
+    id="poleTekstowe"
+    placeholder="Zacznij pisać..."
+>
+<p>
+    Wprowadzony tekst:
+    <span id="calyTekst"></span>
+</p>
+<p>
+    Ostatnio wpisany znak:
+    <strong id="ostatniZnak">-</strong>
+</p>
+<form id="mojFormularz">
+    <div>
+        <label for="poleImie">Imię:</label>
+        <br>
+        <input
+            type="text"
+            id="poleImie"
+            required
+        >
+    </div>
+    <br>
+    <div>
+        <label for="poleNazwisko">Nazwisko:</label>
+        <br>
+
+        <input
+            type="text"
+            id="poleNazwisko"
+            required
+        >
+    </div>
+    <br>
+    <button type="submit" id="przyciskPrzechwyc">
+        Przechwyć
+    </button>
+</form>
+<p id="wynikParagraf">
+    Tutaj pojawią się dane po kliknięciu przycisku.
+</p>
+<p>
+    <a
+        href="https://example.com"
+        id="mojLink"
+    >
+        Kliknij tutaj (example.com)
+    </a>
+</p>
+<p id="komunikatParagraf"></p>
+<label for="mojePole">
+    Kliknij w pole tekstowe:
+</label>
+<br><br>
+<input
+    type="text"
+    id="mojePole"
+    placeholder="Wpisz coś..."
+>
+<br><br>
+<textarea
+    id="poleTekstoweLimit"
+    maxlength="140"
+    placeholder="Wpisz coś (maks. 140 znaków)..."
+></textarea>
+<p>
+    Pozostało znaków:
+    <span id="licznikZnakow">140</span>
+</p>
+<script>
+    const elementPudelko =
+        document.getElementById('mojePudelko');
+
+    const przyciskKlasy =
+        document.getElementById('przyciskKlasy');
+
+    przyciskKlasy.addEventListener('click', () => {
+
+        elementPudelko.classList.toggle('aktywny');
+
+    });
+    let stanLicznika = 0;
+
+    const licznikSpan =
+        document.getElementById('licznikSpan');
+
+    const przyciskPlus =
+        document.getElementById('przyciskPlus');
+
+    const przyciskMinus =
+        document.getElementById('przyciskMinus');
+
+    const przyciskReset =
+        document.getElementById('przyciskReset');
+
+
+    function zaktualizujWidok() {
+
+        licznikSpan.textContent = stanLicznika;
+    }
+    function zwieksz() {
+        stanLicznika++;
+        zaktualizujWidok();
+    }
+    function zmniejsz() {
+        stanLicznika--;
+        zaktualizujWidok();
+    }
+    function resetuj() {
+        stanLicznika = 0;
+        zaktualizujWidok();
+    }
+    przyciskPlus.addEventListener('click', () => {
+        zwieksz();
+
+    });
+    przyciskMinus.addEventListener('click', () => {
+        zmniejsz();
+
+    });
+    przyciskReset.addEventListener('click', () => {
+
+        resetuj();
+
+    });
+    document.addEventListener('keydown', (zdarzenie) => {
+
+        if (zdarzenie.key === 'ArrowUp') {
+            zwieksz();
+        } else if (zdarzenie.key === 'ArrowDown') {
+            zmniejsz();
+        } else if (zdarzenie.key === 'r') {
+
+            resetuj();
+
+        }
+    });
+    // ZADANIE 4
+    window.addEventListener('scroll', () => {
+        let przewiniecie = window.scrollY;
+        if (przewiniecie > 1500) {
+            document.body.style.backgroundColor = 'green';
+        } else if (przewiniecie > 300) {
+            document.body.style.backgroundColor = 'red';
+        } else {
+            document.body.style.backgroundColor = 'white';
+        }
+    });
+    // ZADANIE 5
+    const poleTekstowe =
+        document.getElementById('poleTekstowe');
+    const calyTekstSpan =
+        document.getElementById('calyTekst');
+    const ostatniZnakStrong =
+        document.getElementById('ostatniZnak');
+    poleTekstowe.addEventListener('input', (zdarzenie) => {
+        const wpisanyTekst =
+            poleTekstowe.value;
+        calyTekstSpan.textContent =
+            wpisanyTekst;
+        const znak =
+            zdarzenie.data;
+        if (znak !== null) {
+            ostatniZnakStrong.textContent =
+                znak;
+        }
+    });
+    // ZADANIE 6
+    const formularz =
+        document.getElementById('mojFormularz');
+    const poleImie =
+        document.getElementById('poleImie');
+    const poleNazwisko =
+        document.getElementById('poleNazwisko');
+    const wynikParagraf =
+        document.getElementById('wynikParagraf');
+    formularz.addEventListener('submit', (zdarzenie) => {
+        zdarzenie.preventDefault();
+        const imie =
+            poleImie.value;
+        const nazwisko =
+            poleNazwisko.value;
+        const aktualnaData =
+            new Date();
+        wynikParagraf.textContent =
+            `Witaj, ${imie} ${nazwisko}! Dane przechwycono w dniu: ${aktualnaData.toLocaleString()}`;
+    });
+    // ZADANIE 7
+    const pierwotnyTytul =
+        document.title;
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            document.title = "Come back!";
+        } else {
+            document.title =
+                pierwotnyTytul;
+        }
+    });
+    // ZADANIE 8
+    const mojLink =
+        document.getElementById('mojLink');
+    const komunikatParagraf =
+        document.getElementById('komunikatParagraf');
+    mojLink.addEventListener('click', (zdarzenie) => {
+        zdarzenie.preventDefault();
+        komunikatParagraf.textContent =
+            "Przejście na stronę zostało zablokowane przez skrypt JavaScript.";
+    });
+    // ZADANIE 9
+    const mojePole =
+        document.getElementById('mojePole');
+    mojePole.addEventListener('focus', () => {
+       mojePole.classList.add('focused');
+    });
+    mojePole.addEventListener('blur', () => {
+        mojePole.classList.remove('focused');
+    });
+    // ZADANIE 10
+    const poleTekstoweLimit =
+        document.getElementById('poleTekstoweLimit');
+    const licznikZnakow =
+        document.getElementById('licznikZnakow');
+    const maksymalnyLimit = 140;
+    poleTekstoweLimit.addEventListener('input', () => {
+
+        const wpisaneZnaki =
+            poleTekstoweLimit.value.length;
+        const pozostale =
+            maksymalnyLimit - wpisaneZnaki;
+        licznikZnakow.textContent =
+            pozostale;
+        if (pozostale <= 20) {
+            licznikZnakow.classList.add('warn');
+        } else {
+            licznikZnakow.classList.remove('warn');
+        }
+
+    });
+</script>
+</body>
+</html>
